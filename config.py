@@ -1,4 +1,7 @@
 import os
+import gdown
+from tensorflow.keras.models import load_model
+
 
 class Config:
     """Base configuration"""
@@ -9,6 +12,7 @@ class Config:
     
     # Model configuration
     MODEL_PATH = 'models/garbage_classification_final.h5'
+    MODEL_URL = "https://drive.google.com/uc?id=16YRol2LR3F5I08SBxDEL938CqR6vkQ9b"
     IMG_SIZE = 224
     
     # Class names
@@ -50,13 +54,29 @@ class Config:
         'white-glass': '♻️ Glass recycling bin'
     }
 
+
+def load_ml_model():
+    os.makedirs("models", exist_ok=True)
+
+    if not os.path.exists(Config.MODEL_PATH):
+        print("Downloading model from Google Drive...")
+        gdown.download(Config.MODEL_URL, Config.MODEL_PATH, quiet=False)
+
+    print("Loading model...")
+    model = load_model(Config.MODEL_PATH)
+
+    return model
+
+
 class DevelopmentConfig(Config):
     """Development configuration"""
     DEBUG = True
 
+
 class ProductionConfig(Config):
     """Production configuration"""
     DEBUG = False
+
 
 config = {
     'development': DevelopmentConfig,

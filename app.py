@@ -7,6 +7,10 @@ import json
 from utils.model_utils import GarbageClassifier
 import cv2
 
+# ✅ ADDED: import loader from config
+from config import load_ml_model
+
+
 app = Flask(__name__)
 
 # Configuration
@@ -18,17 +22,23 @@ app.config['ALLOWED_EXTENSIONS'] = {'png', 'jpg', 'jpeg', 'gif'}
 # Ensure upload folder exists
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
-# Initialize the model
-classifier = GarbageClassifier(model_path='models/garbage_classification_final.h5')
+# ❌ REMOVED: direct file-based model loading
+# classifier = GarbageClassifier(model_path='models/garbage_classification_final.h5')
+
+# ✅ ADDED: Google Drive + safe loader
+classifier = load_ml_model()
+
 
 def allowed_file(filename):
     """Check if file extension is allowed"""
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
 
+
 @app.route('/')
 def index():
     """Render the main page"""
     return render_template('index.html')
+
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -64,10 +74,12 @@ def predict():
     
     return jsonify({'error': 'Invalid file type'}), 400
 
+
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
     """Serve uploaded files"""
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
 
 @app.route('/statistics')
 def statistics():
@@ -75,15 +87,18 @@ def statistics():
     stats = classifier.get_model_stats()
     return jsonify(stats)
 
+
 @app.route('/about')
 def about():
     """About page"""
     return render_template('index.html', section='about')
 
+
 @app.errorhandler(413)
 def too_large(e):
     """Handle file too large error"""
     return jsonify({'error': 'File too large. Maximum size is 16MB'}), 413
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=4040)

@@ -10,3 +10,7 @@ venv/
 tf_env/
 .env
 .DS_Store
+models/
+*.h5
+*.keras
+utils/models/
