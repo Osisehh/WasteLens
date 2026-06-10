@@ -5,3 +5,4 @@ opencv-python==4.8.1.78
 Pillow==10.1.0
 werkzeug==3.0.1
 gunicorn
+gdown
