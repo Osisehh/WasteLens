@@ -1,0 +1,12 @@
+# Ignore models and datasets
+models/
+garbage_classification/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+tf_env/
+.env
+.DS_Store

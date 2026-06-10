@@ -1,0 +1,381 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Hero Section -->
+<section id="home" class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="hero-title animate-fade-in">
+                Smart Waste Classification and Disposal System
+                <span class="gradient-text">Powered by AI</span>
+            </h1>
+            <p class="hero-subtitle animate-fade-in-delay">
+                Smart Waste Classification for a Sustainable Future.
+                Upload an image and let AI identify the correct waste category instantly.
+            </p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Categories</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">85%</div>
+                    <div class="stat-label">Accuracy</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">15K+</div>
+                    <div class="stat-label">Images Trained</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">27M</div>
+                    <div class="stat-label">Parameters</div>
+                </div>
+            </div>
+            <div class="hero-buttons">
+                <a href="#prediction" class="btn btn-primary">
+                    <i class="fas fa-upload"></i> Classify Now
+                </a>
+                <a href="#about" class="btn btn-secondary">
+                    <i class="fas fa-info-circle"></i> Learn More
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="scroll-indicator">
+        <i class="fas fa-chevron-down"></i>
+    </div>
+</section>
+
+<!-- Visualization Section -->
+<section id="visualization" class="visualization-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Model Performance & Insights</h2>
+            <p class="section-subtitle">Visual analysis of our CNN model's training and classification capabilities</p>
+        </div>
+        
+        <div class="visualization-grid">
+            <!-- Chart 1: Class Distribution -->
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h3><i class="fas fa-chart-bar"></i> Category Distribution</h3>
+                    <p>Training dataset composition across 12 waste categories</p>
+                </div>
+                <canvas id="classDistributionChart"></canvas>
+            </div>
+            
+            <!-- Chart 2: Model Accuracy -->
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h3><i class="fas fa-chart-line"></i> Training Progress</h3>
+                    <p>Model accuracy improvement over 50 epochs</p>
+                </div>
+                <canvas id="accuracyChart"></canvas>
+            </div>
+            
+            <!-- Chart 3: Confidence Levels -->
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h3><i class="fas fa-chart-pie"></i> Recyclable vs Non-Recyclable</h3>
+                    <p>Waste category breakdown by recyclability</p>
+                </div>
+                <canvas id="recyclableChart"></canvas>
+            </div>
+            
+            <!-- Chart 4: Performance Metrics -->
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h3><i class="fas fa-chart-area"></i> Performance Metrics</h3>
+                    <p>Precision, Recall, and F1-Score comparison</p>
+                </div>
+                <canvas id="metricsChart"></canvas>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="about-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">About WasteLens</h2>
+            <p class="section-subtitle">Intelligent waste management through cutting-edge AI technology</p>
+        </div>
+        
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Our Mission</h3>
+                <p>
+                    WasteLens leverages advanced Convolutional Neural Networks (CNN) to automatically 
+                    identify and categorize waste materials. Our mission is to make recycling easier 
+                    and more accessible, contributing to a cleaner and more sustainable environment.
+                </p>
+                
+                <h3>How It Works</h3>
+                <div class="process-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h4>Upload Image</h4>
+                        <p>Take a photo or upload an image of the waste item</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h4>AI Analysis</h4>
+                        <p>Our CNN model processes the image through 27M parameters</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h4>Get Results</h4>
+                        <p>Receive instant classification with disposal recommendations</p>
+                    </div>
+                </div>
+                
+                <h3>Technology Stack</h3>
+                <div class="tech-stack">
+                    <div class="tech-item">
+                        <i class="fas fa-brain"></i>
+                        <span>TensorFlow & Keras</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-code"></i>
+                        <span>Python & Flask</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-layer-group"></i>
+                        <span>Deep CNN Architecture</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>85% Accuracy</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="about-image">
+                <div class="model-architecture">
+                    <h4>CNN Model Architecture</h4>
+                    <div class="architecture-layer">Input Layer (224x224x3)</div>
+                    <div class="architecture-arrow">↓</div>
+                    <div class="architecture-layer">Conv Block 1 (32 filters)</div>
+                    <div class="architecture-arrow">↓</div>
+                    <div class="architecture-layer">Conv Block 2 (64 filters)</div>
+                    <div class="architecture-arrow">↓</div>
+                    <div class="architecture-layer">Conv Block 3 (128 filters)</div>
+                    <div class="architecture-arrow">↓</div>
+                    <div class="architecture-layer">Conv Block 4 (256 filters)</div>
+                    <div class="architecture-arrow">↓</div>
+                    <div class="architecture-layer">Dense Layers (512, 256)</div>
+                    <div class="architecture-arrow">↓</div>
+                    <div class="architecture-layer output">Output (12 Classes)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Prediction Section -->
+<section id="prediction" class="prediction-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Classify Your Waste</h2>
+            <p class="section-subtitle">Upload an image and get instant AI-powered classification and Disposal Recommendation</p>
+        </div>
+        
+        <div class="prediction-container">
+            <div class="upload-area" id="uploadArea">
+                <div class="upload-content">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <h3>Drag & Drop Image Here</h3>
+                    <p>or click to browse</p>
+                    <input type="file" id="imageInput" accept="image/*" hidden>
+                    <button class="btn btn-primary" onclick="document.getElementById('imageInput').click()">
+                        <i class="fas fa-folder-open"></i> Choose File
+                    </button>
+                    <p class="file-info">Supported: JPG, PNG, GIF (Max 16MB)</p>
+                </div>
+            </div>
+            
+            <div class="preview-area" id="previewArea" style="display: none;">
+                <img id="imagePreview" src="" alt="Preview">
+                <button class="btn btn-success" id="classifyBtn">
+                    <i class="fas fa-magic"></i> Classify Image
+                </button>
+                <button class="btn btn-secondary" id="resetBtn">
+                    <i class="fas fa-redo"></i> Upload Another
+                </button>
+            </div>
+            
+            <div class="loading-area" id="loadingArea" style="display: none;">
+                <div class="spinner"></div>
+                <p>Analyzing image with AI...</p>
+            </div>
+            
+            <div class="result-area" id="resultArea" style="display: none;">
+                <div class="result-header">
+                    <h3>Classification Results</h3>
+                </div>
+                
+                <div class="result-main">
+                    <div class="result-icon" id="resultIcon">🔍</div>
+                    <div class="result-class" id="resultClass">-</div>
+                    <div class="result-confidence">
+                        <span>Confidence:</span>
+                        <span id="resultConfidence" class="confidence-value">-</span>
+                    </div>
+                    <div class="confidence-bar">
+                        <div class="confidence-fill" id="confidenceFill"></div>
+                    </div>
+                </div>
+                
+                <div class="result-details">
+                    <div class="detail-box">
+                        <h4><i class="fas fa-info-circle"></i> Description</h4>
+                        <p id="resultDescription">-</p>
+                    </div>
+                    <div class="detail-box">
+                        <h4><i class="fas fa-recycle"></i> Disposal Recommendation</h4>
+                        <p id="resultRecommendation">-</p>
+                    </div>
+                </div>
+                
+                <div class="top-predictions">
+                    <h4>Top 5 Predictions</h4>
+                    <canvas id="predictionChart"></canvas>
+                </div>
+                
+                <button class="btn btn-primary" onclick="location.reload()">
+                    <i class="fas fa-redo"></i> Classify Another Image
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Statistics Section -->
+<section id="statistics" class="statistics-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Waste Categories</h2>
+            <p class="section-subtitle">Explore the 12 waste categories our AI can identify</p>
+        </div>
+        
+        <div class="categories-grid">
+            <div class="category-card">
+                <div class="category-icon">🔋</div>
+                <h3>Battery</h3>
+                <p>Hazardous waste requiring special disposal</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">🌱</div>
+                <h3>Biological</h3>
+                <p>Organic compostable material</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">🟤</div>
+                <h3>Brown Glass</h3>
+                <p>Recyclable amber-colored glass</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">📦</div>
+                <h3>Cardboard</h3>
+                <p>Recyclable packaging material</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">👕</div>
+                <h3>Clothes</h3>
+                <p>Textile waste for donation/recycling</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">🟢</div>
+                <h3>Green Glass</h3>
+                <p>Recyclable green-colored glass</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">🔩</div>
+                <h3>Metal</h3>
+                <p>Recyclable metal objects</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">📄</div>
+                <h3>Paper</h3>
+                <p>Recyclable paper products</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">🥤</div>
+                <h3>Plastic</h3>
+                <p>Recyclable plastic containers</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">👟</div>
+                <h3>Shoes</h3>
+                <p>Textile waste for donation</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">🗑️</div>
+                <h3>Trash</h3>
+                <p>General non-recyclable waste</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">⚪</div>
+                <h3>White Glass</h3>
+                <p>Recyclable clear glass</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="contact-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="section-subtitle">Have questions? We'd love to hear from you</p>
+        </div>
+        
+        <div class="contact-content">
+            <div class="contact-info">
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <h4>Email</h4>
+                        <p>info@wastelens.com</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <h4>Phone</h4>
+                        <p>+234 816 491 3437</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <h4>Location</h4>
+                        <p>Lagos, Nigeria</p>
+                    </div>
+                </div>
+            </div>
+            
+            <form class="contact-form">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-paper-plane"></i> Send Message
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Initialize charts when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeCharts();
+    });
+</script>
+{% endblock %}
